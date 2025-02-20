@@ -1,0 +1,28 @@
+.right{
+    float: right;
+}
+
+.left{
+    display: inline-block;
+}
+
+.square{
+    background-color: white;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.color{
+    background-color: pink;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#gridContainer{
+    height: 575px;
+    width: 575px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 5px solid black;
+    border-radius: 5px;
+}
