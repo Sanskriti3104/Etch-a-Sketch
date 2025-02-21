@@ -1,28 +1,171 @@
-.right{
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Left Panel Styles */
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.left h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.left label {
+    font-size: 1rem;
+    color: #555;
+}
+
+.left input {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.left .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.left button {
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* .left button.reset {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.left button.reset:hover {
+    background-color: #ff1a1a;
+} */
+
+.left button.classic {
+    background-color: white;
+    color: grey;
+    border: 2px solid grey;
+}
+
+.left button.classic:hover {
+    background-color: grey;
+    color: white;
+}
+
+.left button.rainbow {
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    color: white;
+}
+
+.left button.rainbow:hover {
+    opacity: 0.9;
+}
+
+/* Reset Button Styling */
+.left button.reset {
+    background-color: #000f65; /* Red background */
+    color: white;
+    border: 2px solid #000f65;
+    /* border: 2px solid #ff1a1a; */
+     /* Darker red border */
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.left button.reset:hover {
+    background-color: white;
+    color: #000f65;
+    /* background-color: #ff1a1a;  */
+    /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.left button.reset:active {
+    /* background-color: #cc0000;  */
+    /* Even darker red on click */
+    transform: scale(0.95); /* Slightly shrink on click */
+}
+
+/* Rainbow Button Styling */
+.left button.rainbow {
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet); /* Rainbow gradient */
+    color: white;
+    border: 2px solid transparent; /* Transparent border */
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.left button.rainbow:hover {
+    opacity: 0.9; /* Slightly fade on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.left button.rainbow:active {
+    opacity: 1; /* Full opacity on click */
+    transform: scale(0.95); /* Slightly shrink on click */
+}
+
+/* Grid Styles */
+.right {
     float: right;
 }
 
-.left{
-    display: inline-block;
-}
-
-.square{
-    background-color: white;
-    border: 1px solid black;
-    box-sizing: border-box;
-}
-
-.color{
-    background-color: pink;
-    border: 1px solid black;
-    box-sizing: border-box;
-}
-
-#gridContainer{
+#gridContainer {
     height: 575px;
     width: 575px;
     display: flex;
     flex-wrap: wrap;
     border: 5px solid black;
-    border-radius: 5px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.square {
+    background-color: white;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.color {
+    border: 1px solid black;
+    box-sizing: border-box;
 }
