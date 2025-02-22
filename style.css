@@ -1,7 +1,15 @@
 /* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    /* font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; */
+    font-family: 'Georgia', serif; /* Classy serif font */
+    background-color: #ececec;
     margin: 0;
     padding: 0;
     display: flex;
@@ -11,14 +19,22 @@ body {
 }
 
 .container {
-    display: flex;
+    /* display: flex;
     gap: 20px;
     flex-direction: row-reverse;
     align-items: flex-start;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    display: flex;
+    gap: 25px;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Left Panel Styles */
@@ -30,29 +46,54 @@ body {
 }
 
 .left h1 {
-    font-size: 2rem;
+    /* font-size: 2rem;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 10px; */
+    font-size: 2.2rem;
+    color: #222;
+    font-weight: bold;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
 }
 
+
 .left label {
-    font-size: 1rem;
-    color: #555;
+    /* font-size: 1rem;
+    color: #555; */
+    font-size: 1.1rem;
+    color: #444;
+    font-weight: 500;
 }
 
 .left input {
-    padding: 8px;
+    /* padding: 8px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 100%;
-    max-width: 200px;
+    max-width: 200px; */
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #aaa;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 220px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
 }
 
+.left input:focus {
+    border-color: #555;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Buttons */
 .left .buttons {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    /* gap: 10px; */
+    gap: 12px;
     width: 100%;
 }
 
@@ -62,86 +103,70 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* .left button.reset {
-    background-color: #ff4d4d;
-    color: white;
-}
-
-.left button.reset:hover {
-    background-color: #ff1a1a;
-} */
-
-.left button.classic {
-    background-color: white;
-    color: grey;
-    border: 2px solid grey;
-}
-
-.left button.classic:hover {
-    background-color: grey;
-    color: white;
-}
-
-.left button.rainbow {
-    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-    color: white;
-}
-
-.left button.rainbow:hover {
-    opacity: 0.9;
-}
-
-/* Reset Button Styling */
-.left button.reset {
-    background-color: #000f65; /* Red background */
-    color: white;
-    border: 2px solid #000f65;
-    /* border: 2px solid #ff1a1a; */
-     /* Darker red border */
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.left button.reset:hover {
-    background-color: white;
-    color: #000f65;
-    /* background-color: #ff1a1a;  */
-    /* Darker red on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
+.left button.classic {
+    background: linear-gradient(135deg, #7a7a7a, #505050); 
+    color: white; 
+    border: 2px solid transparent;
 }
 
-.left button.reset:active {
-    /* background-color: #cc0000;  */
-    /* Even darker red on click */
-    transform: scale(0.95); /* Slightly shrink on click */
+.left button.classic:hover {
+    background: linear-gradient(135deg, #505050, #7a7a7a);
+    transform: translateY(-2px);
+    opacity: 0.9; 
 }
 
-/* Rainbow Button Styling */
+.left button.classic:active {
+    transform: translateY(1px);
+}
+
 .left button.rainbow {
-    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet); /* Rainbow gradient */
+    background: linear-gradient(135deg, #ff0080, #ff8c00);
     color: white;
-    border: 2px solid transparent; /* Transparent border */
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: opacity 0.3s ease, transform 0.2s ease;
+    border: 2px solid transparent;
 }
 
 .left button.rainbow:hover {
-    opacity: 0.9; /* Slightly fade on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    background: linear-gradient(135deg, #ff8c00, #ff0080);
+    transform: translateY(-2px);
+    opacity: 0.9;
 }
 
 .left button.rainbow:active {
-    opacity: 1; /* Full opacity on click */
-    transform: scale(0.95); /* Slightly shrink on click */
+    transform: translateY(1px);
+}
+
+.left button.eraser {
+    background: linear-gradient(135deg, #f1a500, #ffcc33);
+    color: white;
+    border: 2px solid transparent;
+}
+
+.left button.eraser:hover {
+    background: linear-gradient(135deg, #ffcc33, #f1a500);
+    transform: translateY(-2px);
+}
+
+.left button.eraser:active {
+    transform: translateY(1px);
+}
+
+.left button.reset {
+    background: linear-gradient(135deg, #000f65, #2207f0);
+    color: white;
+    border: 2px solid transparent;
+}
+
+.left button.reset:hover {
+    background: linear-gradient(135deg, #2207f0, #000f65);
+    transform: translateY(-2px);
+    border: 2px solid transparent;
+}
+
+.left button.reset:active {
+    transform: translateY(1px);
 }
 
 /* Grid Styles */

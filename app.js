@@ -3,35 +3,49 @@ const reset = document.querySelector(".reset");
 const grid = document.querySelector("#gridContainer");
 const rainbow = document.querySelector(".rainbow");
 const classic = document.querySelector(".classic");
+const eraser = document.querySelector(".eraser");
+const warningMessage = document.querySelector(".warning-message");
+
 let mode = "classic";
 
-createGrid = () => {
+const createGrid = () => {
     grid.innerHTML = "";
     const gridSize = 16;
     const squareSize = 575 / gridSize;
 
     for (let i = 0; i < gridSize * gridSize; i++) {
-        const sq = document.createElement("div");
-        sq.classList.add("square");
-        sq.style.height = `${squareSize}px`;
-        sq.style.width = `${squareSize}px`;
-        grid.appendChild(sq);
+        const square = document.createElement("div");
+        square.classList.add("square");
+        square.style.height = `${squareSize}px`;
+        square.style.width = `${squareSize}px`;
+        square.setAttribute("data-brightness", 1);
+        grid.appendChild(square);
     }
 
     addSquareEventListeners();
 };
 
-updateGrid = () => {
+const updateGrid = () => {
+    mode = "classic";
+    const gridSize = parseInt(userInput.value);
+
+    if (isNaN(gridSize) || gridSize < 1 || gridSize > 100) {
+        warningMessage.textContent = "Please enter a size between 1 and 100.";
+        return;
+    } else {
+        warningMessage.textContent = "";
+    }
+
     grid.innerHTML = "";
-    const gridSize = userInput.value;
     const squareSize = 575 / gridSize;
 
     for (let i = 0; i < gridSize * gridSize; i++) {
-        const div = document.createElement("div");
-        div.classList.add("square");
-        div.style.height = `${squareSize}px`;
-        div.style.width = `${squareSize}px`;
-        grid.appendChild(div);
+        const square = document.createElement("div");
+        square.classList.add("square");
+        square.style.height = `${squareSize}px`;
+        square.style.width = `${squareSize}px`;
+        square.setAttribute("data-brightness", 1);
+        grid.appendChild(square);
     }
 
     addSquareEventListeners();
@@ -40,36 +54,55 @@ updateGrid = () => {
 userInput.addEventListener("change", updateGrid);
 
 const addSquareEventListeners = () => {
-    const squares = document.querySelectorAll(".square");
-    squares.forEach(square => {
-        if (mode === "classic") {
-            square.addEventListener("mouseover", function (event) {
-                event.target.style.backgroundColor = "grey";
-                event.target.classList.replace("square", "color");
-            });
-        } else {
-            square.addEventListener("mouseover", function (event) {
-                const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-                event.target.style.backgroundColor = "#" + randomColor;
-                event.target.classList.replace("square", "color");
-            });
-        }
+    document.querySelectorAll(".square").forEach(square => {
+        square.addEventListener("mouseover", handleMouseOver);
     });
 };
 
-classic.addEventListener("click", function () {
+const handleMouseOver = (event) => {
+    const square = event.target;
+    let brightness = parseFloat(square.getAttribute("data-brightness"));
+
+    if( mode === "eraser"){
+        square.style.backgroundColor = "white";
+        square.style.filter = "brightness(1)";
+        square.setAttribute("data-brightness", 1);
+    }else if (brightness === 1) {
+        if (mode === "classic") {
+            square.style.backgroundColor = "grey";
+        } else {
+            const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            square.style.backgroundColor = "#" + randomColor;
+        }
+    }
+
+    if (mode !== "eraser" && brightness > 0.1) {
+        brightness -= 0.1;
+        square.style.filter = `brightness(${brightness})`;
+        square.setAttribute("data-brightness", brightness);
+    }
+};
+
+eraser.addEventListener("click", () =>{
+    mode = "eraser";
+    addSquareEventListeners();
+});
+
+classic.addEventListener("click", () => {
     mode = "classic";
     addSquareEventListeners();
 });
 
-rainbow.addEventListener("click", function () {
+rainbow.addEventListener("click", () => {
     mode = "rainbow";
     addSquareEventListeners();
-})
+});
 
-reset.addEventListener("click", function () {
+reset.addEventListener("click", () => {
     grid.innerHTML = "";
     userInput.value = "";
+    warningMessage.textContent = "";
+    mode = "classic";
     createGrid();
 });
 
