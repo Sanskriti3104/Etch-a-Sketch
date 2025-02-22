@@ -1,13 +1,17 @@
-const userInput = document.getElementById("quantity");
-const reset = document.querySelector(".reset");
 const grid = document.querySelector("#gridContainer");
-const rainbow = document.querySelector(".rainbow");
-const classic = document.querySelector(".classic");
-const eraser = document.querySelector(".eraser");
+const userInput = document.getElementById("quantity");
 const warningMessage = document.querySelector(".warning-message");
+const classic = document.querySelector(".classic");
+const rainbow = document.querySelector(".rainbow");
+const chooseColor = document.querySelector(".chooseColor");
+const choosenColor = document.querySelector("#choosenColor");
+const eraser = document.querySelector(".eraser");
+const reset = document.querySelector(".reset");
 
 let mode = "classic";
+let color = null;
 
+// Function to create the grid
 const createGrid = () => {
     grid.innerHTML = "";
     const gridSize = 16;
@@ -25,6 +29,7 @@ const createGrid = () => {
     addSquareEventListeners();
 };
 
+// Function to update the grid based on user input
 const updateGrid = () => {
     mode = "classic";
     const gridSize = parseInt(userInput.value);
@@ -53,12 +58,14 @@ const updateGrid = () => {
 
 userInput.addEventListener("change", updateGrid);
 
+// Function to add event listeners to grid squares
 const addSquareEventListeners = () => {
     document.querySelectorAll(".square").forEach(square => {
         square.addEventListener("mouseover", handleMouseOver);
     });
 };
 
+// Function to handle mouseover event for grid squares
 const handleMouseOver = (event) => {
     const square = event.target;
     let brightness = parseFloat(square.getAttribute("data-brightness"));
@@ -70,9 +77,11 @@ const handleMouseOver = (event) => {
     }else if (brightness === 1) {
         if (mode === "classic") {
             square.style.backgroundColor = "grey";
-        } else {
+        } else if(mode === "rainbow"){
             const randomColor = Math.floor(Math.random() * 16777215).toString(16);
             square.style.backgroundColor = "#" + randomColor;
+        }else{
+            square.style.backgroundColor = color;
         }
     }
 
@@ -83,11 +92,7 @@ const handleMouseOver = (event) => {
     }
 };
 
-eraser.addEventListener("click", () =>{
-    mode = "eraser";
-    addSquareEventListeners();
-});
-
+// Mode selection event listeners
 classic.addEventListener("click", () => {
     mode = "classic";
     addSquareEventListeners();
@@ -98,6 +103,18 @@ rainbow.addEventListener("click", () => {
     addSquareEventListeners();
 });
 
+eraser.addEventListener("click", () =>{
+    mode = "eraser";
+    addSquareEventListeners();
+});
+
+choosenColor.addEventListener("input",function () {
+    color = this.value;
+    mode = "favColor";
+    addSquareEventListeners(color);
+});
+
+// Reset button functionality
 reset.addEventListener("click", () => {
     grid.innerHTML = "";
     userInput.value = "";
@@ -106,4 +123,5 @@ reset.addEventListener("click", () => {
     createGrid();
 });
 
+// Initialize the grid on page load
 createGrid();
