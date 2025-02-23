@@ -37,7 +37,6 @@ body {
     letter-spacing: 1px;
 }
 
-
 .left label {
     font-size: 1.1rem;
     color: #444;
@@ -78,6 +77,7 @@ body {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Classic button */
 .left button.classic {
     background: linear-gradient(135deg, #7a7a7a, #505050); 
     color: white; 
@@ -94,6 +94,7 @@ body {
     transform: translateY(1px);
 }
 
+/* Rainbow Button */
 .left button.rainbow {
     background: linear-gradient(135deg, #ff0080, #ff8c00);
     color: white;
@@ -110,18 +111,12 @@ body {
     transform: translateY(1px);
 }
 
-/* Styling for Choose Color Label */
+/* Choose color button */
 .chooseColor {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 12px;
-    padding: 10px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
     color: #ffffff;
     background: linear-gradient(135deg, #006161, #0aadad);
     transition: background 0.3s ease, box-shadow 0.3s ease;
@@ -137,6 +132,10 @@ body {
     opacity: 0.9;
 }
 
+.left button.chooseColor:active {
+    transform: translateY(1px);
+}
+
 #choosenColor {
     width: 55px;
     height: 35px;
@@ -150,7 +149,7 @@ body {
     border: 2px solid #ffffff;
 }
 
-
+/* Eraser button */
 .left button.eraser {
     background: linear-gradient(135deg, #f1a500, #ffcc33);
     color: white;
@@ -166,6 +165,7 @@ body {
     transform: translateY(1px);
 }
 
+/* Reset button */
 .left button.reset {
     background: linear-gradient(135deg, #000f65, #2207f0);
     color: white;

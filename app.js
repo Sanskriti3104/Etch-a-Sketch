@@ -8,8 +8,9 @@ const choosenColor = document.querySelector("#choosenColor");
 const eraser = document.querySelector(".eraser");
 const reset = document.querySelector(".reset");
 
-let mode = "classic";
+let mode = "classic";   //Default mode
 let color = null;
+let lastChosenColor = "#000000"; // Default color
 
 // Function to create the grid
 const createGrid = () => {
@@ -29,11 +30,15 @@ const createGrid = () => {
     addSquareEventListeners();
 };
 
+
 // Function to update the grid based on user input
 const updateGrid = () => {
     mode = "classic";
+    color = null;
+    lastChosenColor = "#000000";
+    choosenColor.value = "#000000";
     const gridSize = parseInt(userInput.value);
-
+    
     if (isNaN(gridSize) || gridSize < 1 || gridSize > 100) {
         warningMessage.textContent = "Please enter a size between 1 and 100.";
         return;
@@ -43,7 +48,7 @@ const updateGrid = () => {
 
     grid.innerHTML = "";
     const squareSize = 575 / gridSize;
-
+    
     for (let i = 0; i < gridSize * gridSize; i++) {
         const square = document.createElement("div");
         square.classList.add("square");
@@ -52,7 +57,7 @@ const updateGrid = () => {
         square.setAttribute("data-brightness", 1);
         grid.appendChild(square);
     }
-
+    
     addSquareEventListeners();
 };
 
@@ -110,8 +115,16 @@ eraser.addEventListener("click", () =>{
 
 choosenColor.addEventListener("input",function () {
     color = this.value;
+    lastChosenColor = this.value;
     mode = "favColor";
     addSquareEventListeners(color);
+});
+
+chooseColor.addEventListener("click", () => {
+    choosenColor.value = lastChosenColor; 
+    color = lastChosenColor;
+    mode = "favColor";
+    addSquareEventListeners();
 });
 
 // Reset button functionality
@@ -120,6 +133,9 @@ reset.addEventListener("click", () => {
     userInput.value = "";
     warningMessage.textContent = "";
     mode = "classic";
+    color = null;
+    lastChosenColor = "#000000";
+    choosenColor.value = "#000000";
     createGrid();
 });
 
